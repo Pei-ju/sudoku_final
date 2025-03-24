@@ -1,0 +1,168 @@
+ /* base的CSS */
+
+ .btnn {
+    background-color: #325aaf;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    /* font-family: Hauss, sans-serif; */
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.33;
+    outline: none;
+    transition: .3s;
+}
+
+.btnn:hover {
+    background-color: #7091d5;
+    color: #fff;
+}
+
+.btnn:active {
+    background-color: #4363a7;
+}
+
+
+h2 {
+    margin: .83em 0;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.31;
+}
+
+.container {
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 10px;
+    position: relative;
+    width: 100%;
+}
+
+.site-content-wrapper {
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 0 auto;
+    padding-top: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.site-content {
+    position: relative;
+    width: 100%;
+}
+
+.rules .pb {
+    padding-bottom: 80px;
+}
+
+.rules_items {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-start; */
+    justify-content: center;
+    gap: 10px;
+}
+
+.rules_item {
+    cursor: pointer;
+    flex-basis: calc(30% - 10px);
+    /* margin-bottom: 40px;
+    margin-right: 20px; */
+    margin: 20px 10px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .rules_item {
+        flex-basis: calc(45% - 10px);
+        margin-bottom: 30px;
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .rules_item {
+        flex-basis: 100%;
+        margin-bottom: 40px;
+        margin-right: 0;
+    }
+}
+
+.rules_item:hover img {
+    transform: scale(1.05);
+}
+
+.rules_item_image {
+    border-radius: 5px;
+    margin: 0 0 20px;
+    overflow: hidden;
+}
+
+.rules_item_image img {
+    display: block;
+    transition: .3s;
+    width: 100%;
+}
+
+.rules_item_title {
+    color: #344861;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: normal;
+    margin: 0 0 8px;
+}
+
+.rules_item_desc {
+    color: #6e7c8c;
+    display: block;
+    display: -webkit-box;
+    margin: 0;
+    max-height: 80px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 1.63;
+    text-overflow: ellipsis;
+}
+
+.more-link,
+.post-navigation-item a {
+    color: #325aaf;
+    text-decoration: none;
+    transition: color .2s ease-in-out;
+}
+
+@media (hover: hover) {
+
+    .more-link:hover,
+    .post-navigation-item a:hover {
+        color: #7091d5;
+        text-decoration: underline;
+    }
+}
+
+.more-link:active,
+.post-navigation-item a:active {
+    color: #4363a7;
+    text-decoration: underline;
+}
+
+.more-link {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: normal;
+    line-height: normal;
+    margin-top: 20px;
+    text-decoration: none;
+}

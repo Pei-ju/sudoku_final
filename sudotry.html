@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數獨：遊戲</title>
+    <link rel="icon" href="table-tennis.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="./sudokutry.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f7f3e9;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            padding-top: 1.2rem;
+        }
+
+        .navbar {
+            background-color: #8e4e39;
+            display: flex;
+            /* font-size: large; */
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin-top: 3.5rem;
+        }
+
+        .timer {
+            font-size: large;
+            width: 90px;
+            text-align: left;
+            justify-content: center;
+            padding: 6px;
+        }
+
+        #timearea {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* 遮罩層 */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 8px;
+            /* 黑色半透明背景 */
+            color: white;
+            display: flex;
+            /* display: none; */
+            /* 初始隱藏 */
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #8e4e39;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        #trademark {
+            margin: 16px 0;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 14px;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+
+
+        #game {
+            margin-bottom: 40px;
+        }
+        #how-to-play,
+        #tips {
+            padding: 20px 30px;
+            margin-bottom: 20px;
+            scroll-margin-top: 30px;
+            font-family: Georgia, serif;
+        }
+        #how-to-play {margin-bottom: 0;}
+        #how-to-play p,
+        #tips p {
+            font-size: 1.1em;
+            max-width: 1000px;
+            margin: 0 auto;
+            /* margin: 0 80px; */
+            text-align: justify;
+        }
+        #how-to-play h2,
+        #tips h2 {
+            margin: .83em 0;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.31;
+        }
+        .rules-list {
+            list-style: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            /* display: inline-block; */
+            text-align: justify;
+            background-color: #f5eacf;
+        }
+        .rules-list li {
+            margin: 5px auto;
+            /* 在每個列表項目之間增加間距 */
+        }
+        .highlightt {
+            font-weight: bold;
+            color: #325aaf;
+            border: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <!-- 導覽列 -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid logo">
+                <a class="navbar-brand" href="sudoku_intro.html"><img style="width: 50px; margin: 0 10px 0 0;"
+                        src="table-tennis.png" alt="table-tennis-icon">SUDOKU</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudoku_intro.html" title="回首頁">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudoku_intro.html#how-to-play" title="Rules">規則</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudoku_rules.html" title="Skills">遊戲技巧</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="sudotry.html" title="PlayNow">開始挑戰</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btnn" type="submit">Search</button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTop" class="btn btnn" onclick="scrollToTop()"><i
+        class="bi bi-chevron-up"></i><br>TOP</button>
+    <!-- 主要遊戲區域 -->
+    <div class="container">
+        <section id="game">
+            <h2 class="text-center"><b>數獨遊戲</b></h2>
+            <!-- 數獨盤面 -->
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="sudoku-grid" class="grid"></div>
+                    <!-- 遮罩層 -->
+                    <div id="overlay" class="overlay">
+                        <span id="overlayText">請按 <button class="btnn" style="pointer-events: none; font-size: 22px;">新遊戲</button> 開啟題目!</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- 計時區域 -->
+                    <div class="d-flex" id="timearea">
+                        <div style="padding: 6px; padding-right: 0; font-size: large;">時間:</div>
+                        <div class="timer" id="timer">00:00:00</div>
+                        <!-- <button id="startPauseBtn" class="btn">開始<i class="bi bi-pause-circle-fill"></i></button> -->
+                        <button id="startPauseBtn" class="btn start-pause-btn" style="font-size: large;">開始 <i class="bi bi-play-circle-fill"></i></button>
+                    </div>
+                    <!-- 難度按鈕區域 -->
+                    <div id="area">
+                    <div class="button-container">
+                        <button id="play-again" class="btn btnn" data-bs-toggle="popover" data-bs-placement="bottom" title="選擇難度" data-bs-content="簡單 中等 困難">新遊戲</button>
+                        <div id="difficulty-options" style="display: none;">
+                            <button id="easy" class="btn btnn levelBtn">簡單</button>
+                            <button id="medium" class="btn btnn levelBtn">中等</button>
+                            <button id="hard" class="btn btnn levelBtn">困難</button>
+                        </div>
+                                    
+                        <button id="easy-level" class="btn read-only">簡單</button>
+                        <button id="medium-level" class="btn read-only">中等</button>
+                        <button id="hard-level" class="btn read-only">困難</button>
+                    </div>
+                    <!-- 其他按鈕區域 -->
+                    <div class="method-container">
+                        <button id="solve-button" class="btn btn-success">解答 <i class="bi bi-file-earmark-check"></i></button>
+                        <button id="hint-button" class="btn btn-success">提示 <i class="bi bi-lightbulb"></i></button>
+                        <button id="clear-button" class="btn btn-warning" style="color: white;">重新開始 <i class="bi bi-arrow-clockwise"></i></button>
+                        <!-- <button id="play-again" class="btn btn-primary">新遊戲</button> -->
+                    </div>
+                    </div>
+                    <!-- 數字按鈕區域 -->
+                    <div class="number-container">
+                        <button class="btn number-button" id="btn-1">1</button>
+                        <button class="btn number-button" id="btn-2">2</button>
+                        <button class="btn number-button" id="btn-3">3</button>
+                        <button class="btn number-button" id="btn-4">4</button>
+                        <button class="btn number-button" id="btn-5">5</button>
+                        <button class="btn number-button" id="btn-6">6</button>
+                        <button class="btn number-button" id="btn-7">7</button>
+                        <button class="btn number-button" id="btn-8">8</button>
+                        <button class="btn number-button" id="btn-9">9</button>
+                        <button class="btn cancel-button" id="x-button">x</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <br><br><br><br><br><br> -->
+            <!-- <br><br><br><br><br><br> -->
+
+        </section>
+        <hr>
+        <section id="how-to-play">
+            <h2>如何遊玩數獨</h2>
+            <div class="section-content">
+                <p>數獨的規則非常簡單，但是解決起來卻需要一定的邏輯思考。以下是數獨的基本規則：</p>
+                <ul class="rules-list">
+                    <li><span class="highlightt">每行</span> 只能包含1至9的數字，並且每個數字只能出現一次。</li>
+                    <li><span class="highlightt">每列</span> 只能包含1至9的數字，並且每個數字只能出現一次。</li>
+                    <li><span class="highlightt">每個3x3的區域</span> 也只能包含1至9的數字，並且每個數字只能出現一次。</li>
+                </ul>
+                <p>給定的數字已經符合上述規則，剩下的空格需要玩家填入數字，直到整個盤面符合所有規則。</p>
+            </div>
+        </section>
+        <section id="tips">
+            <h2>小幫手 <i class="bi bi-info-circle"></i></h2>
+            <div class="section-content">
+                <p>以下是本遊戲的附加功能：</p>
+                <ul class="rules-list">
+                    <li><span class="highlightt">解答 <i class="bi bi-file-earmark-check"></i> :</span> 按下後可以判斷玩家填入的所有數字是否與答案相符。【正確：<span style="color: green;">綠色數字</span>；錯誤：<span style="color: red;">紅色數字</span>；空白格：<span style="color: purple;">紫色數字</span>】</li>
+                    <li><span class="highlightt">提示 <i class="bi bi-lightbulb"></i> :</span> 按下後可以判斷玩家填入所選格子的數字是否正確。【正確：<span style="color: green;">綠色數字</span>；錯誤：<span style="color: red;">紅色數字</span>；空白格：<span style="color: purple;">紫色數字</span>】</li>
+                    <li><span class="highlightt">重新開始 <i class="bi bi-arrow-clockwise"></i> :</span> 按下後會清除所有玩家填入的數字，並重新開始計時。</li>
+                    <li><span class="highlightt">明亮提醒 :</span> 點選數獨盤面數字，相同數字的其他格子會呈現醒目顏色。</li>
+                    <li><span class="highlightt">灰階提醒 :</span> 當數獨盤面內相同數字達到9個時，數字按鈕會呈現灰階色彩。</li>
+                </ul>
+                <p>上述功能可以協助玩家判斷空格內該填入什麼數字，直到整個盤面符合所有規則。</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p id="trademark">© 2025 數獨網站</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="sudokutry.js"></script> <!-- 確保這個 JS 檔案和 HTML 在同一目錄 -->
+    <script src="timer.js"></script> 
+    <script>
+        // 滾動時顯示或隱藏回到頂部的按鈕
+        window.onscroll = function () {
+            let button = document.getElementById('backToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                button.style.display = 'block'; // 顯示按鈕
+            } else {
+                button.style.display = 'none'; // 隱藏按鈕
+            }
+        };
+
+        // 點擊按鈕時，讓頁面滾動回頂部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 平滑滾動
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn how to play Sudoku with our easy-to-follow guide. Find tips, tricks, and strategies for solving Sudoku puzzles.">
+    <title>數獨：遊戲技巧-最後的空格</title>
+    <link rel="icon" href="table-tennis.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="carousel.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- <link href="base.css" rel="stylesheet"> -->
+    <link href="rules.css" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f7f3e9;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            padding-top: 1.2rem;
+        }
+
+        /* Header and Navigation Bar */
+
+        .navbar {
+            background-color: #8e4e39;
+            display: flex;
+            /* font-size: large; */
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        /* Section and Footer */
+        section {
+            padding: 20px 30px 0 30px;
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #8e4e39;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        #trademark {
+            margin: 16px 0;
+        }
+
+        #sudokuRules p {
+            font-size: 1.1em;
+            max-width: 1000px;
+            margin: 16px auto;
+            /* margin: 0 80px; */
+            text-align: justify;
+        }
+
+        #intro_words {
+            max-height: 220px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .intro_content {
+            text-indent: 35px;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 14px;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+    </style>
+
+</head>
+
+<!-- <body> -->
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" tabindex="0">
+    <header>
+        <!-- 導覽列 -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid logo">
+                <a class="navbar-brand" href="#"><img style="width: 50px; margin: 0 10px 0 0;" src="table-tennis.png"
+                        alt="table-tennis-icon">SUDOKU</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudoku_intro.html" title="回首頁">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudoku_intro.html#how-to-play" title="Rules">規則</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" title="Skills">遊戲技巧</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudotry.html" title="PlayNow">開始挑戰</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btnn" type="submit">Search</button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTop" class="btn btnn" onclick="scrollToTop()"><i class="bi bi-chevron-up"></i><br>TOP</button>
+    <!-- 主要內容區域 -->
+    <!-- <section id="intro">
+        <h2>數獨簡介</h2>
+        <p>數獨是一款充滿挑戰和智慧的邏輯遊戲，起源於...（簡單介紹）</p>
+    </section>
+
+    <section id="history">
+        <h2>數獨的歷史</h2>
+        <p>數獨最早出現在...（介紹歷史）</p>
+    </section>
+
+    <section id="how-to-play">
+        <h2>如何玩數獨</h2>
+        <p>數獨的規則很簡單...（解釋規則）</p>
+    </section> -->
+
+    <section id="sudokuRules">
+        <h2>最後的空格</h2>
+        <div class="d-flex justify-content-center">
+            <iframe width="640" height="360" src="https://www.youtube.com/embed/1i4br16Xogw"
+                title="Last free cell - a Sudoku technique for beginners" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <br>
+        <!-- <div id="intro_words">
+            <p class="intro_content">
+                「最後的空格」是基本的數獨解題技巧。這個方法相當簡單。此技巧的基礎是數獨網格裡每個 3×3 的宮、直行和橫列必須包含
+                1 到 9 的數字，且每個數字在 3×3 的宮、直行和橫列只能使用一次。  因此若發現某個 3×3 的宮、直行和橫列裡只有一個空格，就要確認是少了 1 到 9
+                之中哪個數字，再填到空格裡。
+            </p>
+        </div> -->
+        <br><br>
+        <a href="sudoku_rules.html" class="btn btnn" style="margin: 16px;"><i class="bi bi-chevron-double-left"></i>返回技巧目錄</a>
+        <br><br><br>
+    </section>
+
+    <footer>
+        <p id="trademark">© 2025 數獨網站</p>
+    </footer>
+
+    <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 滾動時顯示或隱藏回到頂部的按鈕
+        window.onscroll = function () {
+            let button = document.getElementById('backToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                button.style.display = 'block'; // 顯示按鈕
+            } else {
+                button.style.display = 'none'; // 隱藏按鈕
+            }
+        };
+
+        // 點擊按鈕時，讓頁面滾動回頂部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 平滑滾動
+            });
+        }
+    </script>
+
+</body>
+
+</html>

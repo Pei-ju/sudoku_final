@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn how to play Sudoku with our easy-to-follow guide. Find tips, tricks, and strategies for solving Sudoku puzzles.">
+    <title>數獨：遊戲技巧</title>
+    <link rel="icon" href="table-tennis.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="carousel.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- <link href="base.css" rel="stylesheet"> -->
+    <link href="rules.css" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f7f3e9;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            padding-top: 1.2rem;
+        }
+
+        /* Header and Navigation Bar */
+
+        .navbar {
+            background-color: #8e4e39;
+            display: flex;
+            /* font-size: large; */
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+
+        /* Section and Footer */
+        section {
+            padding: 20px 30px 0 30px;
+            margin: 10px 0;
+        }
+
+        footer {
+            background-color: #8e4e39;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        #trademark {
+            margin: 16px 0;
+        }
+
+        /* #intro p,
+        #history p,
+        #how-to-play p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        } */
+
+        #backToTop {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 14px;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 99;
+        }
+        
+    </style>
+
+</head>
+
+<!-- <body> -->
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" tabindex="0">
+    <header>
+        <!-- 導覽列 -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid logo">
+                <a class="navbar-brand" href="#"><img style="width: 50px; margin: 0 10px 0 0;" src="table-tennis.png"
+                        alt="table-tennis-icon">SUDOKU</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudoku_intro.html" title="回首頁">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudoku_intro.html#how-to-play" title="Rules">規則</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#" title="Skills">遊戲技巧</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudotry.html" title="PlayNow">開始挑戰</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btnn" type="submit">Search</button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTop" class="btn btnn" onclick="scrollToTop()"><i
+            class="bi bi-chevron-up"></i><br>TOP</button>
+    <!-- 主要內容區域 -->
+    <!-- <section id="intro">
+        <h2>數獨簡介</h2>
+        <p>數獨是一款充滿挑戰和智慧的邏輯遊戲，起源於...（簡單介紹）</p>
+    </section>
+
+    <section id="history">
+        <h2>數獨的歷史</h2>
+        <p>數獨最早出現在...（介紹歷史）</p>
+    </section>
+
+    <section id="how-to-play">
+        <h2>如何玩數獨</h2>
+        <p>數獨的規則很簡單...（解釋規則）</p>
+    </section> -->
+
+    <section id="sudokuRules">
+        <h2>數獨技巧</h2>
+        <div class="container site-content-wrapper">
+            <div id="primary" class="site-content" role="main">
+                <div class="rules">
+                    <!-- <div class="rules_header">
+                        <div class="rules_header_title">數獨規則
+                        </div>
+                    </div> -->
+
+                    <div class="pb">
+                        <div class="rules_items">
+                            <a href="sudoku_rules_video.html" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/6214ed76443bf960485595.png" alt="">
+                                    <!-- <img data-src="/img/post-images/6214f747d031d330908846.png"
+                                        data-srcset="/img/post-images/6214f747d031d330908846.png 1x, /img/post-images/6214ed76443bf960485595.png 2x"
+                                        alt="最後的空格" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">最後的空格
+                                </div>
+                                <div class="rules_item_desc">「最後的空格」是基本的數獨解題技巧。這個方法相當簡單。此技巧的基礎是數獨網格裡每個 3×3 的宮、直行和橫列必須包含
+                                    1 到 9 的數字，且每個數字在 3×3 的宮、直行和橫列只能使用一次。  因此若發現某個 3×3 的宮、直行和橫列裡只有一個空格，就要確認是少了 1 到 9
+                                    之中哪個數字，再填到空格裡。   您可以參考下方範例，瞭解如何使用這項技巧。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/zui-hou-sheng-yu-de-ge-zi/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-at-2x-62178e336c2ed616336198.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-62178e336bda7493944417.png"
+                                        data-srcset="/img/post-images/rules-img-copy-62178e336bda7493944417.png 1x, /img/post-images/rules-img-copy-at-2x-62178e336c2ed616336198.png 2x"
+                                        alt="最後剩餘的格子" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">最後剩餘的格子
+                                </div>
+                                <div class="rules_item_desc">「最後剩餘的格子」是另一種數獨基本策略，此技巧的基礎是 3×3 的宮、直行和橫列裡的數字不可重複。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/zui-hou-ke-neng-de-shu-zi/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-2-at-2x-621898dfe70bd057215081.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-2-621898dfe6c2f424240388.png"
+                                        data-srcset="/img/post-images/rules-img-copy-2-621898dfe6c2f424240388.png 1x, /img/post-images/rules-img-copy-2-at-2x-621898dfe70bd057215081.png 2x"
+                                        alt="最後可能的數字" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">最後可能的數字
+                                </div>
+                                <div class="rules_item_desc">「最後可能的數字」是個很簡單的策略，相當適合新手。這個技巧是要找出缺少的數字，想要找出遺漏的數字，請先看看做為目標的
+                                    3x3 的宮和相鄰的列和行裡，目前有哪些數字。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <!-- <a href="https://sudoku.com/tw/shu-du-gui-ze/shu-du-de-zhu-ji-gong-neng/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img data-src="/img/post-images/rules-img-copy-3-621c808067e6b901870469.png"
+                                        data-srcset="/img/post-images/rules-img-copy-3-621c808067e6b901870469.png 1x, /img/post-images/rules-img-copy-3-at-2x-621c80806831d843799293.png 2x"
+                                        alt="數獨的註記功能" class="lazy-image">
+                                </div>
+                                <div class="rules_item_title">數獨的註記功能
+                                </div>
+                                <div class="rules_item_desc">
+                                    若在數獨網格上碰到難以突破的困境，而且在剩下的格子中找不到明顯的解決方法，請使用「註記」功能。有了「註記」輔助，您便可專心思考數獨網格裡現有的數字，並在每個空格中填入所有可能的選擇。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a> -->
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/xian-xing-wei-yi/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-4-at-2x-621c9018ae4a9640921376.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-4-621c9018adfc9224892100.png"
+                                        data-srcset="/img/post-images/rules-img-copy-4-621c9018adfc9224892100.png 1x, /img/post-images/rules-img-copy-4-at-2x-621c9018ae4a9640921376.png 2x"
+                                        alt="顯性唯一" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">顯性唯一
+                                </div>
+                                <div class="rules_item_desc">這種思考策略的基礎為在正確的格子內填入註記，有時候也稱為「唯一單格」。關鍵在於特定格子的註記只有一個可能的數字。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/xian-xing-shu-dui/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-5-at-2x-621c9dc8e04ba344824735.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-5-621c9dc8e02cc751112843.png"
+                                        data-srcset="/img/post-images/rules-img-copy-5-621c9dc8e02cc751112843.png 1x, /img/post-images/rules-img-copy-5-at-2x-621c9dc8e04ba344824735.png 2x"
+                                        alt="顯性數對" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">顯性數對
+                                </div>
+                                <div class="rules_item_desc">「顯性數對」技巧和「顯性唯一」技巧一樣，基本上是運用註記的擺放位置。關鍵是在 3x3 宮裡找出註記為兩對相同數字的 2
+                                    個格子，這表示在這個 3x3 的宮裡，其他格子不可能使用這對註記的數字，因此可從其他註記裡移除。這個範例可以讓您更容易瞭解這種策略。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/xian-xing-san-lian-shu/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-6-at-2x-621cc4ce847e1857016400.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-6-621cc4ce84610853259721.png"
+                                        data-srcset="/img/post-images/rules-img-copy-6-621cc4ce84610853259721.png 1x, /img/post-images/rules-img-copy-6-at-2x-621cc4ce847e1857016400.png 2x"
+                                        alt="顯性三鏈數" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">顯性三鏈數
+                                </div>
+                                <div class="rules_item_desc">
+                                    這種數獨解題技巧，是從上一種「顯性數對」技巧衍生而來，但「顯性三鏈數」不只光靠註記裡的兩個數字，而是運用三個數字，這是兩者的唯一差別。看一下這個範例有助於理解。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/yin-xing-wei-yi/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-7-at-2x-621cdf1a215d0152764541.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-7-621cdf1a21132405672453.png"
+                                        data-srcset="/img/post-images/rules-img-copy-7-621cdf1a21132405672453.png 1x, /img/post-images/rules-img-copy-7-at-2x-621cdf1a215d0152764541.png 2x"
+                                        alt="隱性唯一" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">隱性唯一
+                                </div>
+                                <div class="rules_item_desc">「隱性唯一」是種很簡單的數獨技巧，關鍵是在一列、一行或一整個 3x3
+                                    的宮中，找出不重複的註記，不過這種技巧仰賴玩家的細心程度，因為要找出單獨存在的註記並不容易。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/yin-xing-shu-dui/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-8-at-2x-621794e759d4d609637602.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-8-621794e75994d553248031.png"
+                                        data-srcset="/img/post-images/rules-img-copy-8-621794e75994d553248031.png 1x, /img/post-images/rules-img-copy-8-at-2x-621794e759d4d609637602.png 2x"
+                                        alt="隱性數對" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">隱性數對
+                                </div>
+                                <div class="rules_item_desc">「隱性數對」技巧和「隱性唯一」的原理相同，唯一的不同之處在於格子和註記的數量。若在一列、一行或 3x3
+                                    的宮裡，可找出兩個格子內有相同的兩個註記，且這兩個註記並未出現在其他格子裡，則這兩個註記必定位於這兩個格子中，而這兩個格子的其他註記全都可排除。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/yin-xing-san-lian-shu/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-9-at-2x-621908bbe7ced830240792.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-9-6219088937b0b648623589.png"
+                                        data-srcset="/img/post-images/rules-img-copy-9-6219088937b0b648623589.png 1x, /img/post-images/rules-img-copy-9-at-2x-621908bbe7ced830240792.png 2x"
+                                        alt="隱性三鏈數" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">隱性三鏈數
+                                </div>
+                                <div class="rules_item_desc">「隱性三鏈數」技巧相當類似「隱性數對」，兩者概念相同。 若一列、一行或 3x3
+                                    的宮裡，有三個格子內有相同的三個註記，就能運用「隱性三鏈數」。這三個格子裡還有其他的候選數字，現在可以全數移除。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/shuang-ge-qu-kuai-pai-chu/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-15-at-2x-621cc01f497af821396569.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-15-621cc01f4926d688066088.png"
+                                        data-srcset="/img/post-images/rules-img-copy-15-621cc01f4926d688066088.png 1x, /img/post-images/rules-img-copy-15-at-2x-621cc01f497af821396569.png 2x"
+                                        alt="雙格區塊排除" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">雙格區塊排除
+                                </div>
+                                <div class="rules_item_desc">
+                                    若某個註記在一個宮裡出現兩次，且該註記位於同一列或同一行，就能運用「雙格區塊排除」。這表示該宮兩個格子之一的答案必定是該註記的數字，因此可以將此註記從所在列或行的其他格子裡排除。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/san-ge-qu-kuai-pai-chu/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-12-at-2x-621cc0bf89914250734383.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-12-621cc0bf896e7018146960.png"
+                                        data-srcset="/img/post-images/rules-img-copy-12-621cc0bf896e7018146960.png 1x, /img/post-images/rules-img-copy-12-at-2x-621cc0bf89914250734383.png 2x"
+                                        alt="三格區塊排除" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">三格區塊排除
+                                </div>
+                                <div class="rules_item_desc">「三格區塊排除」技巧相當類似於「雙格區塊排除」。若 3x3
+                                    的宮裡只有三個格子存在某個註記，且該註記位在同一列或同一行，就能運用此技巧。這表示該宮三個格子之一的答案必定是該註記的數字，因此這個註記顯然不是該列或該行其他格子的答案，可以從其他格子裡排除。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/ju-xing-ding-dian-shan-chu-fa/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-10-at-2x-621d3a4b06180567094015.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-10-621d3a4b05eac843199715.png"
+                                        data-srcset="/img/post-images/rules-img-copy-10-621d3a4b05eac843199715.png 1x, /img/post-images/rules-img-copy-10-at-2x-621d3a4b06180567094015.png 2x"
+                                        alt="矩形頂點刪除法" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">矩形頂點刪除法
+                                </div>
+                                <div class="rules_item_desc">「矩形頂點刪除法」是進階數獨技巧，基礎為使用兩個平行的列或兩個平行的行，不需要考慮 3x3 的宮，此策略和宮無關。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/shuang-yi-lian/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-13-at-2x-621d45b7c6b0b341251097.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-13-621d45b7c67fe212707923.png"
+                                        data-srcset="/img/post-images/rules-img-copy-13-621d45b7c67fe212707923.png 1x, /img/post-images/rules-img-copy-13-at-2x-621d45b7c6b0b341251097.png 2x"
+                                        alt="雙翼鏈" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">雙翼鏈
+                                </div>
+                                <div class="rules_item_desc">「雙翼鏈」技巧與「矩形頂點刪除法」類似，但著重於三個角落，而非四個角落。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+                            <a href="https://sudoku.com/tw/shu-du-gui-ze/jian-yu/" class="rules_item">
+                                <div class="rules_item_image">
+                                    <img src="https://sudoku.com/img/post-images/rules-img-copy-16-at-2x-621d544381dfb898148485.png"
+                                        alt="">
+                                    <!-- <img data-src="/img/post-images/rules-img-copy-16-621d544381bdb725803111.png"
+                                        data-srcset="/img/post-images/rules-img-copy-16-621d544381bdb725803111.png 1x, /img/post-images/rules-img-copy-16-at-2x-621d544381dfb898148485.png 2x"
+                                        alt="劍魚" class="lazy-image"> -->
+                                </div>
+                                <div class="rules_item_title">劍魚
+                                </div>
+                                <div class="rules_item_desc">
+                                    「劍魚」技巧是進階的數獨策略。通常應用在困難等級的數獨謎題上，用於排除候選數字。「劍魚」類似「矩形頂點刪除法」，但會用到三組格子，不光只有兩組。
+                                </div>
+                                <span class="more-link">
+                                    繼續閱讀
+                                    <span>&rarr;</span>
+                                </span>
+                            </a>
+    </section>
+
+    <footer>
+        <p id="trademark">© 2025 數獨網站</p>
+    </footer>
+
+    <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 滾動時顯示或隱藏回到頂部的按鈕
+        window.onscroll = function () {
+            let button = document.getElementById('backToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                button.style.display = 'block'; // 顯示按鈕
+            } else {
+                button.style.display = 'none'; // 隱藏按鈕
+            }
+        };
+
+        // 點擊按鈕時，讓頁面滾動回頂部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 平滑滾動
+            });
+        }
+    </script>
+
+</body>
+
+</html>

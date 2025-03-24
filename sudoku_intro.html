@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Learn how to play Sudoku with our easy-to-follow guide. Find tips, tricks, and strategies for solving Sudoku puzzles.">
+    <title>數獨：古典邏輯遊戲的智慧挑戰</title>
+    <link rel="icon" href="table-tennis.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="carousel.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- <link href="base.css" rel="stylesheet"> -->
+    <link href="rules.css" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f7f3e9;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            padding-top: 1.2rem;
+        }
+
+        /* Header and Navigation Bar */
+
+        .navbar {
+            background-color: #8e4e39;
+            display: flex;
+            /* font-size: large; */
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+            padding: 0;
+        }        
+
+        /* Section and Footer */
+        section {
+            padding: 20px 30px 0 30px;
+            margin: 10px 0;
+            scroll-margin-top: 30px;
+        }
+
+        footer {
+            background-color: #8e4e39;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        #intro p,
+        #skills p,
+        #how-to-play p {
+            font-size: 1.1em;
+            max-width: 1000px;
+            margin: 0 auto;
+            /* margin: 0 80px; */
+            text-align: justify;
+        }
+
+        /* 展開繼續閱讀 */
+        #intro_words {
+            max-height: 220px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        #intro_words.expanded {
+            max-height: none;
+        }
+
+        .intro_content {
+            text-indent: 35px;
+        }
+
+        .rules-list {
+            list-style: none;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            /* display: inline-block; */
+            text-align: justify;
+            background-color: #f5eacf;
+        }
+
+        .rules-list li {
+            margin: 5px auto;
+            /* 在每個列表項目之間增加間距 */
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #325aaf;
+        }
+
+        #backToTop {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            display: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 14px;
+            text-align: center;
+            justify-content: center;
+            padding: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            margin: .83em 0;
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.31;
+        }
+
+        #trademark {
+            margin: 16px 0;
+        }
+
+    </style>
+
+</head>
+
+<!-- <body> -->
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" tabindex="0">
+    <header>
+        <!-- 導覽列 -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid logo">
+                <a class="navbar-brand" href="#"><img style="width: 50px; margin: 0 10px 0 0;" src="table-tennis.png"
+                        alt="table-tennis-icon">SUDOKU</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#intro" title="回首頁">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#how-to-play" title="Rules">規則</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#skills" title="Skills">遊戲技巧</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sudotry.html" title="PlayNow">開始挑戰</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btnn" type="submit">Search</button>
+                    </form>
+                    <br>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 返回頂部按鈕 -->
+    <button id="backToTop" class="btn btnn" onclick="scrollToTop()"><i
+            class="bi bi-chevron-up"></i><br>TOP</button>
+    <!-- 主要內容區域 -->
+    <section id="intro">
+        <h2>數獨簡介</h2>
+        <div id="intro_words">
+            <p class="intro_content">
+                數獨（Sudoku）是一款充滿挑戰和智慧的邏輯數字遊戲，其名稱來自於日文的「數字獨立」，意思是“每個數字只出現一次”。
+            </p>
+            <p class="intro_content">
+                數獨的基本玩法是，給定一個9x9的數字網格，部分格子已經填好數字，玩家需要依照特定的規則填寫剩餘的數字。這款遊戲因其簡單的規則和挑戰性的邏輯性深受玩家喜愛，並且有助於提高思維的敏捷性。
+            </p>
+            <br>
+            <p><b>起源與歷史</b></p>
+            <p class="intro_content">
+                其歷史可以追溯到18世紀末，但它的名字和現代形式直到20世紀才出現。最早的數獨遊戲形式出現於瑞士的數學家洛根（Leonhard Euler）於1783年提出的“拉丁方陣”（Latin
+                square）。然而，數獨的現代版本真正出現是在1979年，由日本出版社“ニッカンスポーツ”（Nikkan
+                Sports）首次在日本刊登，並取名為“數字填空”遊戲，隨後縮寫為“數獨”即“數字獨立”。但直到1986年，數獨才真正走紅，當時，英國《Times》報紙開始刊登數獨遊戲，並迅速在全球流行開來。時至今日，數獨已經成為全球最大的紙質和線上謎題之一。
+            </p>
+            <br>
+            <p><b>發展與全球化</b></p>
+            <p class="intro_content">
+                自從數獨在全球走紅以來，數獨的形式和變體也不斷發展。除了經典的9x9版本，還有16x16、25x25等更大格子數量的變體，甚至還有3D數獨、數字對戰數獨等創新形式。隨著數字化時代的來臨，數獨不僅在報紙和雜誌中出現，也被移植到了手機應用和網站上，玩家可以隨時隨地挑戰自己。
+            </p>
+            <br>
+            <p><b>教育與未來</b></p>
+            <p class="intro_content">
+                數獨已經不僅僅是一種娛樂方式。它被廣泛應用於大腦訓練和教育領域。數獨遊戲有助於提升人們的邏輯思維能力、問題解決能力、注意力集中度以及數學直覺。在一些教育機構中，數獨已經成為提高學生邏輯思維能力的一個工具。此外，數獨的簡單規則也使其成為跨文化、跨語言的遊戲，世界各地的人們都能夠輕鬆理解並享受這個遊戲的樂趣。
+            </p>
+            <p class="intro_content">
+                數獨未來的發展可能會受到人工智能（AI）的影響。隨著計算機科學和算法的不斷進步，許多數獨的解法和生成方法已經由AI技術來完成，這使得數獨的難度和玩法變得更加多樣化。隨著數字遊戲和智能設備的普及，數獨可能會融入更多的交互元素，並逐漸發展成為更加複雜的數字謎題。
+            </p>
+        </div>
+        <!-- 簡介展開閱讀 -->
+        <!-- <button id="continueRead" class="btn" style="margin: 5px auto; display: block;" onclick="toggleText()">展開閱讀<br><i class="bi bi-chevron-compact-down"></i></button> -->
+        <button id="continueRead" class="btn btnn" style="margin: 5px auto; display: block; width: 96px;" onclick="toggleText()"><i class="bi bi-chevron-compact-down"></i></button>
+
+    </section>
+
+    <section id="how-to-play">
+        <h2>如何玩數獨</h2>
+        <div class="section-content">
+            <p>數獨的規則非常簡單，但是解決起來卻需要一定的邏輯思考。以下是數獨的基本規則：</p>
+            <ul class="rules-list">
+                <li><span class="highlight">每行</span> 只能包含1至9的數字，並且每個數字只能出現一次。</li>
+                <li><span class="highlight">每列</span> 只能包含1至9的數字，並且每個數字只能出現一次。</li>
+                <li><span class="highlight">每個3x3的區域</span> 也只能包含1至9的數字，並且每個數字只能出現一次。</li>
+            </ul>
+            <p>給定的數字已經符合上述規則，剩下的空格需要玩家填入數字，直到整個盤面符合所有規則。</p>
+            <p>數獨的解法沒有唯一的解答方式，解謎者可以使用邏輯推理、消去法或其他策略來逐步填充空格。隨著難度的提升，盤面會變得更加複雜，需要更多的思考與耐心。</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>數獨的技巧</h2>
+        <div class="pb">
+            <div class="rules_items">
+                <a href="sudoku_rules_video.html" class="rules_item">
+                    <div class="rules_item_image">
+                        <img src="https://sudoku.com/img/post-images/6214ed76443bf960485595.png" alt="">
+                        <!-- <img data-src="/img/post-images/6214f747d031d330908846.png"
+                                data-srcset="/img/post-images/6214f747d031d330908846.png 1x, /img/post-images/6214ed76443bf960485595.png 2x"
+                                alt="最後的空格" class="lazy-image"> -->
+                    </div>
+                    <div class="rules_item_title">最後的空格
+                    </div>
+                    <div class="rules_item_desc">「最後的空格」是基本的數獨解題技巧。這個方法相當簡單。此技巧的基礎是數獨網格裡每個 3×3 的宮、直行和橫列必須包含
+                        1 到 9 的數字，且每個數字在 3×3 的宮、直行和橫列只能使用一次。  因此若發現某個 3×3 的宮、直行和橫列裡只有一個空格，就要確認是少了 1 到 9
+                        之中哪個數字，再填到空格裡。   您可以參考下方範例，瞭解如何使用這項技巧。
+                    </div>
+                    <span class="more-link">
+                        繼續閱讀
+                        <span class="meta-nav">&rarr;</span>
+                    </span>
+                </a>
+                <a href="https://sudoku.com/tw/shu-du-gui-ze/zui-hou-sheng-yu-de-ge-zi/" class="rules_item">
+                    <div class="rules_item_image">
+                        <img src="https://sudoku.com/img/post-images/rules-img-copy-at-2x-62178e336c2ed616336198.png"
+                            alt="">
+                        <!-- <img data-src="/img/post-images/rules-img-copy-62178e336bda7493944417.png"
+                                data-srcset="/img/post-images/rules-img-copy-62178e336bda7493944417.png 1x, /img/post-images/rules-img-copy-at-2x-62178e336c2ed616336198.png 2x"
+                                alt="最後剩餘的格子" class="lazy-image"> -->
+                    </div>
+                    <div class="rules_item_title">最後剩餘的格子
+                    </div>
+                    <div class="rules_item_desc">「最後剩餘的格子」是另一種數獨基本策略，此技巧的基礎是 3×3 的宮、直行和橫列裡的數字不可重複。
+                    </div>
+                    <span class="more-link">
+                        繼續閱讀
+                        <span class="meta-nav">&rarr;</span>
+                    </span>
+                </a>
+                <a href="https://sudoku.com/tw/shu-du-gui-ze/zui-hou-ke-neng-de-shu-zi/" class="rules_item">
+                    <div class="rules_item_image">
+                        <img src="https://sudoku.com/img/post-images/rules-img-copy-2-at-2x-621898dfe70bd057215081.png"
+                            alt="">
+                        <!-- <img data-src="/img/post-images/rules-img-copy-2-621898dfe6c2f424240388.png"
+                            data-srcset="/img/post-images/rules-img-copy-2-621898dfe6c2f424240388.png 1x, /img/post-images/rules-img-copy-2-at-2x-621898dfe70bd057215081.png 2x"
+                            alt="最後可能的數字" class="lazy-image"> -->
+                    </div>
+                    <div class="rules_item_title">最後可能的數字
+                    </div>
+                    <div class="rules_item_desc">「最後可能的數字」是個很簡單的策略，相當適合新手。這個技巧是要找出缺少的數字，想要找出遺漏的數字，請先看看做為目標的
+                        3x3 的宮和相鄰的列和行裡，目前有哪些數字。
+                    </div>
+                    <span class="more-link">
+                        繼續閱讀
+                        <span>&rarr;</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <a href="sudoku_rules.html" class="btn btnn" style="margin: 16px;">點我看更多技巧<i class="bi bi-chevron-double-right"></i></a>
+    </section>
+
+    <footer>
+        <p id="trademark">© 2025 數獨網站</p>
+    </footer>
+
+    <!-- <script src="../assets/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 滾動時顯示或隱藏回到頂部的按鈕
+        window.onscroll = function () {
+            let button = document.getElementById('backToTop');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                button.style.display = 'block'; // 顯示按鈕
+            } else {
+                button.style.display = 'none'; // 隱藏按鈕
+            }
+        };
+
+        // 點擊按鈕時，讓頁面滾動回頂部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth' // 平滑滾動
+            });
+        }
+    </script>
+    <script>
+        function toggleText() {
+            let textElement = document.getElementById("intro_words");
+            let continueRead = document.getElementById("continueRead");
+
+            textElement.classList.toggle("expanded");
+
+            if (textElement.classList.contains("expanded")) {
+                continueRead.innerHTML = '<i class="bi bi-chevron-compact-up"></i>';
+            }
+            else {
+                continueRead.innerHTML = '<i class="bi bi-chevron-compact-down"></i>';
+            }
+
+        }
+    </script>
+
+</body>
+
+</html>
