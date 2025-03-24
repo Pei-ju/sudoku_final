@@ -135,7 +135,7 @@ h2 {
         flex-direction: row;
     }
 
-    h2 {
+    #game h2 {
         display: none;
     }
 
