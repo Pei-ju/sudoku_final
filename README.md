@@ -30,3 +30,5 @@
    ```
 2. 使用瀏覽器開啟 sudoku_intro.html 即可開始遊戲。
 
+或者直接點選 https://pei-ju.github.io/sudoku_final/sudoku_intro.html 開啟網頁。
+
